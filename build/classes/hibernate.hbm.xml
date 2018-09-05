@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.cubic.HibernatePro.Employee" table="emp125" discriminator-value="emp">
+	<id name="id">
+	<generator class="increment"></generator>
+	</id>
+	<discriminator column="type" type="string"></discriminator>
+	<property name="name"></property>
+	<subclass name="com.cubic.HibernatePro.Regular_Employee" discriminator-value="regemp">
+	<property name="salary"></property>
+	<property name="bonus"></property>
+	</subclass>
+	<subclass name="com.cubic.HibernatePro.Contract_Employee" discriminator-value="contractemp">
+	<property name="payperhour"></property>
+	<property name="contractperiod"></property>
+	</subclass>
+	</class>
+	<!-- <class name="com.cubic.HibernatePro.Employee" table="empsub">
+	<id name="id">
+	<generator class="increment"></generator>
+	</id>
+	<property name="name"></property>
+	<union-subclass name="com.cubic.HibernatePro.Regular_Employee" table="regempsub">
+	<property name="salary"></property>
+	<property name="bonus"></property>
+	</union-subclass>
+	<union-subclass name="com.cubic.HibernatePro.Contract_Employee" table="contractempsub">
+	<property name="payperhour"></property>
+	<property name="contractperiod"></property>
+	</union-subclass>
+	</class> -->
+	<!-- 
+	<class name="com.cubic.HibernatePro.Employee" table="empsub">
+	<id name="id">
+	<generator class="increment"></generator>
+	</id>
+	<property name="name"></property>
+	<joined-subclass name="com.cubic.HibernatePro.Regular_Employee" table="regempsub">
+	<key column="eid"></key>
+	<property name="salary"></property>
+	<property name="bonus"></property>
+	</joined-subclass>
+	<joined-subclass name="com.cubic.HibernatePro.Contract_Employee" table="contractempsub">
+	<key column="eid"></key>
+	<property name="payperhour"></property>
+	<property name="contractperiod"></property>
+	</joined-subclass>
+	</class> -->
+</hibernate-mapping>
